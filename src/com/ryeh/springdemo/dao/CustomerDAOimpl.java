@@ -18,7 +18,6 @@ public class CustomerDAOimpl implements CustomerDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
 	public List<Customer> getCustomers() {
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
