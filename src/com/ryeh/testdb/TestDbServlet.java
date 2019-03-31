@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
 
-
 /**
  * Servlet implementation class TestDbServlet
  */
@@ -25,25 +24,40 @@ public class TestDbServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// setup connection variables
-		String user = "springstudent";
-		String pass = "springstudent";
-		String jdbcUrl = "jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false";
-		String driver = "com.mysql.jdbc.Driver";
-				
+		String user = "root";
+		String pass = "nopass";
+		
+		String jdbcUrl = "jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false&serverTimezone=UTC";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		
 		// get connection to database
 		try {
 			PrintWriter out = response.getWriter();
-			System.out.println("Connection to database: " + jdbcUrl);
+			
+			out.println("Connecting to database: " + jdbcUrl);
+			
 			Class.forName(driver);
+			
 			Connection myConn = DriverManager.getConnection(jdbcUrl, user, pass);
-			System.out.println("Connection successful");
+			
+			out.println("SUCCESS!!!");
+			
 			myConn.close();
-
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new ServletException(e);
+			
 		}
-		
+		catch (Exception exc) {
+			exc.printStackTrace();
+			throw new ServletException(exc);
+		}
+	
+	
 	}
 
 }
+
+
+
+
+
+
+

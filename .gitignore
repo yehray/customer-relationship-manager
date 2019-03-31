@@ -1,6 +1,6 @@
 .gradle
 /build/
-WebContent/
+WebContent/WEB_INF/lib/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
