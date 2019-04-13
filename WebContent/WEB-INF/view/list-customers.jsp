@@ -25,20 +25,29 @@
 		        onclick="window.location.href='showFormForAdd'; return false;"
 		         class="add-button"/>
 				<table>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-				</tr>
-				
-				<c:forEach var="tempCustomer" items="${customers}">
-					<tr>
-						<td> ${tempCustomer.firstName} </td>
-						<td> ${tempCustomer.lastName} </td>
-						<td> ${tempCustomer.email} </td>		
-					</tr>
-				</c:forEach>
-			</table>	
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <c:forEach var="tempCustomer" items="${customers}">
+                        <c:param name="customerId" value="${tempCustomer.id}" />
+                    <c:/url var="updateLink" value="/customer/showFormForUpdate">
+
+                    </c:url>
+                        <tr>
+                            <td> ${tempCustomer.firstName} </td>
+                            <td> ${tempCustomer.lastName} </td>
+                            <td> ${tempCustomer.email} </td>
+                            <td>
+                                <a href="${updateLink}">Update</a>
+                            </td>
+
+                        </tr>
+                    </c:forEach>
+			    </table>
 		</div>
 	</div>
 </body>

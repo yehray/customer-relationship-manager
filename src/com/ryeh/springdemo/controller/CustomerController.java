@@ -41,10 +41,19 @@ public class CustomerController {
 
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer theCustomer){
-
 		// save the customer using the service
 		customerService.saveCustomer(theCustomer);
-		return "redirect:?customer/list";
+
+		return "redirect:/customer/list";
 	}
-	
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("customerId") int theId, Model theModel){
+		//get customer from service
+		Customer theCustomer = customerService.getCustomer(theId);
+		// set customer as a model attribute to prepopulate the form
+		theModel.addAttribute("customer", theCustomer);
+		//send over the form
+		return "customer-form";
+	}
 }
